@@ -1,5 +1,10 @@
 package com.elyhouadria.acmeinc.entities;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -23,7 +28,7 @@ public class Address implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_userid")
-	private User user;
+	private AcmeUser acmeUser;
 	
 	@OneToMany(mappedBy= "shippingAddress")
 	private List<UserOrder> userOrdersAddress;
@@ -94,12 +99,12 @@ public class Address implements Serializable {
 		this.country = country;
 	}
 	
-	public User getUser() {
-		return user;
+	public AcmeUser getUser() {
+		return acmeUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(AcmeUser acmeUser) {
+		this.acmeUser = acmeUser;
 	}
 
 	public List<UserOrder> getuserOrdersAddress() {
@@ -121,7 +126,7 @@ public class Address implements Serializable {
 		this.country = country;
 	}
 
-	public Address(String lastName, String firstName, String addressLine1, String addressLine2, int zipCode, String city, String country, User user) {
+	public Address(String lastName, String firstName, String addressLine1, String addressLine2, int zipCode, String city, String country, AcmeUser acmeUser) {
 		this.lastName = lastName;
 		this.firstName = firstName;
 		this.addressLine1 = addressLine1;
@@ -129,10 +134,10 @@ public class Address implements Serializable {
 		this.zipCode = zipCode;
 		this.city = city;
 		this.country = country;
-		this.user = user;
+		this.acmeUser = acmeUser;
 		}
 
-	public Address(int id, String lastName, String firstName, String addressLine1, String addressLine2, int zipCode, String city, String country, User user) {
+	public Address(int id, String lastName, String firstName, String addressLine1, String addressLine2, int zipCode, String city, String country, AcmeUser acmeUser) {
 		this.id = id;
 		this.lastName = lastName;
 		this.firstName = firstName;
@@ -141,7 +146,7 @@ public class Address implements Serializable {
 		this.zipCode = zipCode;
 		this.city = city;
 		this.country = country;
-		this.user = user;
+		this.acmeUser = acmeUser;
 		
 	}
 

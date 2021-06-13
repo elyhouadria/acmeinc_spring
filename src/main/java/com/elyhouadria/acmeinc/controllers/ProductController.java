@@ -17,8 +17,6 @@ public class ProductController {
 
     public ProductController(ProductServices productServices){this.productServices=productServices;}
 
-
-
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAllProducts(){
         List<Product> products = productServices.findAllProducts();

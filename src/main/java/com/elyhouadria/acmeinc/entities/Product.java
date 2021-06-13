@@ -25,9 +25,6 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy = "product")//this is probably wrong it must  be unidirectionnem
 	private List<OrderLine> productOrderLines;
 
-	@OneToMany(mappedBy = "product")
-	private List<Review> productReviews;
-
 	public Product() {}
 
 	public Product(String productName, String productDescription, Double productPrice, String imageURL,
@@ -95,14 +92,6 @@ public class Product implements Serializable {
 
 	public void setProductOrderLines(List<OrderLine> productOrderLines) {
 		this.productOrderLines = productOrderLines;
-	}
-
-	public List<Review> getProductReviews() {
-		return productReviews;
-	}
-
-	public void setProductReviews(List<Review> productReviews) {
-		this.productReviews = productReviews;
 	}
 
 	public String getImageURL() {

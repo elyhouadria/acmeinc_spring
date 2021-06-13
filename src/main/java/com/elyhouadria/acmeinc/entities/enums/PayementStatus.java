@@ -4,6 +4,10 @@ public enum PayementStatus {
 	
 	Pending,
 	Payed,
-	Refunded
+	Refunded;
 
+	@Override
+	public String toString() {
+		return name();
+	}
 }

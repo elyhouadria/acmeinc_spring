@@ -1,7 +1,7 @@
 package com.elyhouadria.acmeinc.entities;
 
 
-import com.elyhouadria.acmeinc.entities.enums.UserRole;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -9,10 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-
-public class User implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
+@Data
+public class AcmeUser implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,27 +19,22 @@ public class User implements Serializable{
 	private String lastName;
 	private String email;
 	private String password;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 	
 	private Boolean isActive;
+
+	private String roles;
 	
-	@Enumerated(EnumType.STRING)
-	private UserRole userRole;
-	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="acmeUser", cascade = CascadeType.ALL)
 	private List<Address> userAddresses;
 	
-	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy="acmeUser", cascade = CascadeType.ALL)
 	private List<UserOrder> userUserOrders;
-	
-	@OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private List<Review> userReviews;
 
-	public User() {}
 
-	public User(String firstName, String lastName, String email, String password, Date creationDate, Boolean isActive, UserRole userRole) {
+	/*public AcmeUser(String firstName, String lastName, String email, String password, Date creationDate, Boolean isActive, String roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -49,16 +42,16 @@ public class User implements Serializable{
 		this.password = password;
 		this.creationDate = creationDate;
 		this.isActive = isActive;
-		this.userRole = userRole;
+		this.roles = roles;
 	}
 
-	public User(String firstName, String lastName) {
+	public AcmeUser(String firstName, String lastName) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
 
-	public User(int id, String firstName, String lastName, String email, String password, Date creationDate, Boolean isActive, UserRole userRole) {
+	public AcmeUser(int id, String firstName, String lastName, String email, String password, Date creationDate, Boolean isActive, String roles) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -67,8 +60,10 @@ public class User implements Serializable{
 		this.password = password;
 		this.creationDate = creationDate;
 		this.isActive = isActive;
-		this.userRole = userRole;
+		this.roles = roles;
 	}
+
+	public AcmeUser() {}
 
 	public int getId() {
 		return id;
@@ -126,14 +121,6 @@ public class User implements Serializable{
 		this.isActive = isActive;
 	}
 
-	public UserRole getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(UserRole role) {
-		this.userRole = role;
-	}
-
 	public List<Address> getUserAddresses() {
 		return userAddresses;
 	}
@@ -150,18 +137,17 @@ public class User implements Serializable{
 		this.userUserOrders = userUserOrders;
 	}
 
-	public List<Review> getUserReviews() {
-		return userReviews;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setUserReviews(List<Review> userReviews) {
-		this.userReviews = userReviews;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	@Override
 	public String toString() {
 		return id + firstName + " " + lastName;
-//		return String.valueOf(id);
 	}
 	@Override
 	public int hashCode() {
@@ -179,10 +165,10 @@ public class User implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		AcmeUser other = (AcmeUser) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
-	
+	*/
 }

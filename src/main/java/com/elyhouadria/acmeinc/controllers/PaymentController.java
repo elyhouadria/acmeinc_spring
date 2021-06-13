@@ -21,13 +21,11 @@ public class PaymentController {
         List<Payment> payments = paymentServices.findAllPayments();
         return new ResponseEntity<>(payments, HttpStatus.OK);
     }
-
     @GetMapping("/find/{id}")
     public ResponseEntity<Payment> findPaymentById(@PathVariable("id") Integer id){
         Payment payment = paymentServices.findPaymentById(id);
         return new ResponseEntity<>(payment, HttpStatus.OK);
     }
-
     @PostMapping("/add")
     public ResponseEntity<Payment> addPayment(@RequestBody Payment payment){
         Payment newPayment = paymentServices.addPayment(payment);
@@ -45,7 +43,4 @@ public class PaymentController {
         paymentServices.deletePaymentById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
 }

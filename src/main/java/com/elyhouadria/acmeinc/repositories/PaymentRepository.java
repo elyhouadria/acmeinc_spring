@@ -10,6 +10,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Integer> {
     void deletePaymentById(Integer id);
     Optional<Payment> findPaymentById(Integer id);
 
+
+
 	/*int AddPayement(Payment payement);
 
 	void DeletePayement(int payementId);

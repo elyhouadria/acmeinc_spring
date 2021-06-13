@@ -31,7 +31,7 @@ public class ProductServices {
     }
 
     public Product findProductById(Integer id) {
-        return productRepository.findPaymentById(id)
+        return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product by id: " + id + " was not found"));
     }
 

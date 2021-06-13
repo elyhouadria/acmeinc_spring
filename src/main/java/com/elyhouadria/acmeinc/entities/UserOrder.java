@@ -32,7 +32,7 @@ public class UserOrder implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="fk_userid")
-	private User user;
+	private AcmeUser acmeUser;
 	
 	@ManyToOne
 	@JoinColumn(name="fk_shippingaddressid")
@@ -67,33 +67,33 @@ public class UserOrder implements Serializable {
 		this.shipping = shipping;
 	}
 	
-	public UserOrder(Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, User user, 	Address shippingAddress) {
+	public UserOrder(Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, AcmeUser acmeUser, Address shippingAddress) {
 		this.orderDate = orderDate;
 		this.shippingDate = shippingDate;
 		this.orderStatus = orderStatus;
 		this.totalPrice = totalPrice;
-		this.user = user;
+		this.acmeUser = acmeUser;
 		this.shippingAddress = shippingAddress;
 	}
 
-	public UserOrder(Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, User user, Address shippingAddress, Shipping shipping, Payment payment) {
+	public UserOrder(Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, AcmeUser acmeUser, Address shippingAddress, Shipping shipping, Payment payment) {
 		this.orderDate = orderDate;
 		this.shippingDate = shippingDate;
 		this.orderStatus = orderStatus;
 		this.totalPrice = totalPrice;
-		this.user = user;
+		this.acmeUser = acmeUser;
 		this.shippingAddress = shippingAddress;
 		this.shipping = shipping;
 		this.payment = payment;
 	}
 	
-	public UserOrder(int id, Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, User user, Address shippingAddress, Shipping shipping, Payment payment) {
+	public UserOrder(int id, Date orderDate, Date shippingDate, OrderStatus orderStatus, Double totalPrice, AcmeUser acmeUser, Address shippingAddress, Shipping shipping, Payment payment) {
 		this.id = id;
 		this.orderDate = orderDate;
 		this.shippingDate = shippingDate;
 		this.orderStatus = orderStatus;
 		this.totalPrice = totalPrice;
-		this.user = user;
+		this.acmeUser = acmeUser;
 		this.shippingAddress = shippingAddress;
 		this.shipping = shipping;
 		this.payment = payment;
@@ -147,12 +147,12 @@ public class UserOrder implements Serializable {
 		this.payment = payment;
 	}
 
-	public User getUser() {
-		return user;
+	public AcmeUser getUser() {
+		return acmeUser;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(AcmeUser acmeUser) {
+		this.acmeUser = acmeUser;
 	}
 
 	public Address getShippingAddress() {
@@ -214,8 +214,4 @@ public class UserOrder implements Serializable {
 			return false;
 		return true;
 	}
-
-
-
-
 }

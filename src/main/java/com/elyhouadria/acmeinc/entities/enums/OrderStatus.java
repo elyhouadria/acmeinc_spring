@@ -5,6 +5,10 @@ public enum OrderStatus {
 	Pending,
 	Shipped,
 	Delivered,
-	Refunded
+	Refunded;
 
+	@Override
+	public String toString() {
+		return name();
+	}
 }
