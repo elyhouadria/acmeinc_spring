@@ -22,6 +22,7 @@ public class User implements UserDetails {
     private List<GrantedAuthority> authorities;
 
 
+    //Match User constructor with ACMEUser
     public User(AcmeUser acmeUser){
         this.id = acmeUser.getId();
         this.firstName = acmeUser.getFirstName();

@@ -1,6 +1,4 @@
 package com.elyhouadria.acmeinc.security;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import javax.validation.Valid;
 
 @RestController
 @CrossOrigin
@@ -21,7 +20,8 @@ public class JwtAuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @PostMapping(value = "/authenticate")
-    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@Valid
+                                                       @RequestBody JwtRequest authenticationRequest) throws Exception {
         System.out.println("Request :");
         System.out.println(authenticationRequest);
 
@@ -41,28 +41,23 @@ public class JwtAuthenticationController {
         return ResponseEntity.ok(new JwtResponse(token, user, expirationDate));
     }
 
-
+    //Authenticate user
     private User authenticate(JwtRequest request) throws Exception {
         System.out.println("Authenticate request:");
         System.out.println(request);
         User user = null;
-
-
         try {
             Authentication auth = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-            user = (User)auth.getPrincipal();
+            user = (User) auth.getPrincipal();
 
             System.out.println("after authentication:");
             System.out.println(user);
-
         } catch (DisabledException e) {
             throw new Exception("USER_DISABLED", e);
         } catch (BadCredentialsException e) {
             throw new Exception("INVALID_CREDENTIALS", e);
         }
-
         System.out.println(user);
         return user;
-
     }
 }

@@ -12,10 +12,4 @@ public interface OrderLineRepository extends JpaRepository<OrderLine, Integer> {
     void deleteOrderLineById(Integer id);
     Optional<OrderLine> findOrderLineById(Integer id);
 
-	/*void deleteOrderLine(int orderLineId);
-	void updateOrderLine(OrderLine orderline);
-	public List<OrderLine> getAllOrderLines();
-	int addOrderLine(OrderLine orderLine);
-	public UserOrder findUserOrderById(int userOrderId);
-	public Product findProductById(int productId);*/
 }

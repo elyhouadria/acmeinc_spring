@@ -7,19 +7,8 @@ import java.util.Optional;
 
 public interface AddressRepository extends JpaRepository<Address, Integer> {
 
-    void deleteEmployeeById(Integer id);
-    Optional<Address> findAdressById(Integer id);
-
-/*
-	int addAdress(Address adress);
-
-	void deleteAdress(int adressId);
-
-	void updateAdress(Address adress);
-
-	List<Address> getAllAdresses();
-	
-	public User findUserById(int userId);
-*/
+    Optional<Address> findAddressById(Integer id);
+    void deleteAddressById(Integer id);
+    Optional<Address[]> findAddressesByAcmeUser_Id(Integer id);
 
 }

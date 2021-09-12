@@ -19,6 +19,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //Main security configuration settings
     @Autowired
     private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
@@ -47,18 +48,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
+    //Configure security for individual URL paths, methods, rules...
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf().disable()
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
-                .antMatchers(HttpMethod.GET,"/product/all").permitAll()
                 .antMatchers(HttpMethod.POST,  "/authenticate", "/user/add","/product/add").permitAll()
+                .antMatchers(HttpMethod.GET,"/productpagination").permitAll()
+                .antMatchers(HttpMethod.GET,"/category/all").permitAll()
+                .antMatchers(HttpMethod.GET,"/category/find/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/contact/**").access("hasAuthority('ROLE_USER')")
+                .antMatchers(HttpMethod.GET,"/product/all","/product/find/**", "/product/search/**", "/product/findbycategory/**").permitAll()
                 .anyRequest().authenticated().and()
-
                 .exceptionHandling().authenticationEntryPoint(jwtAuthenticationEntryPoint).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        httpSecurity.cors(); //fixes cors error
     }
 }

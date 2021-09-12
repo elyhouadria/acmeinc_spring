@@ -1,11 +1,9 @@
 package com.elyhouadria.acmeinc.services;
-
 import com.elyhouadria.acmeinc.entities.AcmeUser;
 import com.elyhouadria.acmeinc.entities.common.UserConstant;
 import com.elyhouadria.acmeinc.exceptions.UserNotFoundException;
 import com.elyhouadria.acmeinc.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-/*import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;*/
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +36,8 @@ public class UserServices {
     }
 
     public AcmeUser updateUser(AcmeUser acmeUser) {
+/*        String encryptPassword = passwordEncoder.encode(acmeUser.getPassword());
+        acmeUser.setPassword(encryptPassword);*/
         return userRepository.save(acmeUser);
     }
 

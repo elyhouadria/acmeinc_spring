@@ -22,7 +22,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     private JwtUserDetailsService jwtUserDetailsService;
 
 
-
+    //Check if incoming connections have a tokken
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
@@ -49,6 +49,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
     }
 
+    //Chek validity of token
     private void validateToken(JwtTokenUtil jwtTokenUtil, String username, FilterChain chain, HttpServletRequest request,
                                HttpServletResponse response) throws ServletException, IOException {
         // Once we get the token validate it.

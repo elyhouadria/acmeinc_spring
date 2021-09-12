@@ -11,14 +11,15 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class JwtTokenUtil {
-    private static final long JWT_TOKEN_VALIDITY = 24 * 60 * 60 * 1000;
+    //Duration of token validity
+    private static final long JWT_TOKEN_VALIDITY = 2 * 60 * 60 * 1000;
+    //Secret used to crypt and sign JWT
     public static final String SECRET = "mysecret";
 
 
     private String token = null;
 
-
-
+    //Utility to generate token
     private static JwtTokenUtil doGenerateToken(Map<String, Object> claims, String subject){
 
         String token = Jwts.builder()

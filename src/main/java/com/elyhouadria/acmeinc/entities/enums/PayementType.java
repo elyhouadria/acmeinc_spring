@@ -2,8 +2,9 @@ package com.elyhouadria.acmeinc.entities.enums;
 
 public enum PayementType {
 	
-	paypal,
+	PayPal,
 	credit_card,
+	Bank_Transfer
 	;
 
 	@Override

@@ -21,29 +21,12 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    //will this work?
-
+    //Find User in DataBase based on email
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         Optional<AcmeUser> optionalAcmeUser = userRepository.findUserByEmail(username);
 
         return  optionalAcmeUser.map(User ::new).orElseThrow(()->new UsernameNotFoundException(username + " doesn't exist"));
     }
-
-/*    public Collection<? extends GrantedAuthority> getAuthorities(AcmeUser acmeUser) {
-
-        return acmeUser.getRoles().stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_"+user.getRoles()))
-                .collect(Collectors.toList());
-    }*/
-
-
-/*    @Override
-    public UserDetails loadUserByUsername (String username) throws UsernameNotFoundException{
-        User user = repository.findByUserName(username);
-        return new org.springframework.security.core.userdetails.User(user.getUserName(), user.getPassword(), new ArrayList<>());
-    }*/
-
-
 
 }
