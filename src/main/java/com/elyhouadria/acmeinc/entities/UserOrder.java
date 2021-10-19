@@ -26,6 +26,7 @@ public class UserOrder implements Serializable {
 	private Date orderDate;
 	
 	@Enumerated(EnumType.STRING)
+	@Column(length= 32)
 	private OrderStatus orderStatus;
 
 	@Column(length= 11)

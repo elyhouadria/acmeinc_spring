@@ -37,11 +37,12 @@ public class Address implements Serializable {
 			message = "Please enter a valid address line 2")
 	private String addressLine2;
 	@Column(length = 17)
-	@Pattern(regexp = "^[0-9a-zA-Z- ]{5,17}$")
-	private int zipCode;
+	@Pattern(regexp = "^[0-9a-zA-Z- ]{5,17}$",
+			message = "Please enter a valid Zip Code")
+	private String zipCode;
 	@Column(length = 35)
 	@Pattern(regexp = "^[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{2,35}$",
-			message = "Please enter a valid Zip Code.")
+			message = "Please enter a valid City")
 	private String city;
 	@Column(length = 50)
 	@Pattern(regexp = "^[a-zA-Z-àáâãäåçèéêëìíîïðòóôõöùúûüýÿ' ]{2,50}$")

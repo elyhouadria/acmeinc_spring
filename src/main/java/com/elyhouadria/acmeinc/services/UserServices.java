@@ -4,7 +4,7 @@ import com.elyhouadria.acmeinc.entities.common.UserConstant;
 import com.elyhouadria.acmeinc.exceptions.UserNotFoundException;
 import com.elyhouadria.acmeinc.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class UserServices {
     private final UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServices(UserRepository userRepository) {

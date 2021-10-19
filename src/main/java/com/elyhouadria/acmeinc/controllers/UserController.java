@@ -1,23 +1,17 @@
 package com.elyhouadria.acmeinc.controllers;
 
 import com.elyhouadria.acmeinc.entities.AcmeUser;
-import com.elyhouadria.acmeinc.repositories.UserRepository;
 import com.elyhouadria.acmeinc.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
-
-    @Autowired
-    private UserRepository userRepository;
 
     @Autowired
     private final UserServices userServices;
@@ -41,6 +35,10 @@ public class UserController {
     @PostMapping("/add")
     public ResponseEntity<AcmeUser> addUser(@Valid
                                             @RequestBody AcmeUser acmeUser) {
+        System.out.println(acmeUser.getFirstName());
+        System.out.println(acmeUser.getLastName());
+        System.out.println(acmeUser.getEmail());
+        System.out.println("psw:" + acmeUser.getPassword());
         AcmeUser newAcmeUser = userServices.addUser(acmeUser);
         return new ResponseEntity<>(newAcmeUser, HttpStatus.CREATED);
     }
@@ -57,5 +55,4 @@ public class UserController {
         userServices.deleteUserById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }

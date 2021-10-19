@@ -30,9 +30,7 @@ public class AcmeUser implements Serializable{
 	@Email(message = "Email invalid")
 	private String email;
 
-
-	@JsonIgnore
-	@Column(length = 254)
+	@Column(length = 254, nullable = false)
 	@Pattern(regexp = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s).{6,254}$",
 			message = "Password invalid")
 	private String password;
@@ -53,14 +51,13 @@ public class AcmeUser implements Serializable{
 	private List<UserOrder> userUserOrders;
 
 
-	/*public AcmeUser(String firstName, String lastName, String email, String password, Date creationDate, Boolean isActive, String roles) {
+/*	public AcmeUser(String firstName, String lastName, String email, String password, Date creationDate, String roles) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.creationDate = creationDate;
-		this.isActive = isActive;
 		this.roles = roles;
 	}
 
@@ -78,11 +75,15 @@ public class AcmeUser implements Serializable{
 		this.email = email;
 		this.password = password;
 		this.creationDate = creationDate;
-		this.isActive = isActive;
 		this.roles = roles;
 	}
 
-	public AcmeUser() {}
+	public AcmeUser(String firstName, String lastName, String email, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+	}
 
 	public int getId() {
 		return id;
@@ -130,14 +131,6 @@ public class AcmeUser implements Serializable{
 
 	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
-	}
-
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
 	}
 
 	public List<Address> getUserAddresses() {
@@ -188,6 +181,5 @@ public class AcmeUser implements Serializable{
 		if (id != other.id)
 			return false;
 		return true;
-	}
-	*/
+	}*/
 }

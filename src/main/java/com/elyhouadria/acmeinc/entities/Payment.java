@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 
@@ -19,7 +20,7 @@ public class Payment implements Serializable {
 	private int id;
 
 	@Column(length= 11)
-	@Pattern(regexp = "^\\d+(,\\d{1,2})?$")
+	@NotNull
 	private Double amount;
 
 	@Column(length= 35)
