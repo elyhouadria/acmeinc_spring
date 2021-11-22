@@ -9,5 +9,6 @@ public interface UserOrderRepository extends JpaRepository<UserOrder,Integer> {
 
     void deleteUserOrderById(Integer id);
     Optional<UserOrder> findUserOrderById(Integer id);
+    Optional<UserOrder[]> findUserOrdersByAcmeUser_Id(Integer id);
 
 }

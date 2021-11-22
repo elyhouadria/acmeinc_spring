@@ -29,6 +29,7 @@ public class UserController {
     @GetMapping("/find/{id}")
     public ResponseEntity<AcmeUser> findUserById(@PathVariable("id") Integer id) {
         AcmeUser acmeUser = userServices.findAcmeUserById(id);
+        System.out.println("creation date sent :" + acmeUser.getCreationDate());
         return new ResponseEntity<>(acmeUser, HttpStatus.OK);
     }
 
@@ -46,6 +47,7 @@ public class UserController {
     @PutMapping("/update")
     public ResponseEntity<AcmeUser> updateUser(@Valid
                                                @RequestBody AcmeUser acmeUser) {
+        System.out.println("Controller output: " + acmeUser.getCreationDate());
         AcmeUser updateAcmeUser = userServices.updateUser(acmeUser);
         return new ResponseEntity<>(updateAcmeUser, HttpStatus.OK);
     }

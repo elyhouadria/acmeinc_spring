@@ -1,6 +1,7 @@
 package com.elyhouadria.acmeinc.entities;
 import com.elyhouadria.acmeinc.entities.enums.PayementStatus;
 import com.elyhouadria.acmeinc.entities.enums.PayementType;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -36,7 +37,7 @@ public class Payment implements Serializable {
 	@Column(length= 32)
 	private PayementType paymentType;
 
-	@JsonManagedReference(value = "user_order_payment")
+	@JsonBackReference(value = "user_order_payment")
 	@OneToOne(mappedBy="payment")
 	private UserOrder userorder;
 

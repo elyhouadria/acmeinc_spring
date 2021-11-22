@@ -1,6 +1,7 @@
 package com.elyhouadria.acmeinc.services;
 
 import com.elyhouadria.acmeinc.entities.UserOrder;
+import com.elyhouadria.acmeinc.exceptions.AddressNotFoundException;
 import com.elyhouadria.acmeinc.exceptions.UserOrderNotFoundException;
 import com.elyhouadria.acmeinc.repositories.UserOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +42,8 @@ public class UserOrderServices {
         userOrderRepository.deleteUserOrderById(id);
     }
 
+    public UserOrder[] findUserOrdersByUserId(Integer id) {
+        return userOrderRepository.findUserOrdersByAcmeUser_Id(id)
+                .orElseThrow(() -> new AddressNotFoundException("UserOrders by user id: " + id + " was not found"));
+    }
 }

@@ -1,9 +1,7 @@
 package com.elyhouadria.acmeinc.entities;
-
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import org.hibernate.validator.constraints.URL;
-
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import java.io.Serializable;
@@ -33,6 +31,7 @@ public class Category implements Serializable {
 	@URL
 	private String imageURL;
 
+	// Managed reference to avoid JSOn loop between product and category
 	@JsonManagedReference(value = "product_category")
 	@OneToMany(mappedBy="category")
 	private List<Product> productsInCategory;

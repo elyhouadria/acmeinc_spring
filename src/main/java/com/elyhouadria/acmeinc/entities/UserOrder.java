@@ -1,12 +1,9 @@
 package com.elyhouadria.acmeinc.entities;
-
 import com.elyhouadria.acmeinc.entities.enums.OrderStatus;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.DecimalMin;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,8 +11,6 @@ import java.util.List;
 @Entity
 @Data
 public class UserOrder implements Serializable {
-
-/*	private static final long serialVersionUID = 1L;*/
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -30,8 +25,10 @@ public class UserOrder implements Serializable {
 	private OrderStatus orderStatus;
 
 	@Column(length= 11)
-	@Pattern(regexp = "^\\d+(,\\d{1,2})?$")
+	@DecimalMin("1.0")
+	@DecimalMin("1.0")
 	private Double totalPrice;
+
 
 	@ManyToOne
 	@JoinColumn(name="fk_userid")
@@ -45,7 +42,7 @@ public class UserOrder implements Serializable {
 	@JoinColumn(name="fk_billingaddressid")
 	private Address billingAddress;
 
-
+	@JsonManagedReference(value = "user_order_orderLine")
 	@OneToMany(mappedBy= "userOrder")
 	private List<OrderLine> productOrderList;
 
@@ -53,7 +50,7 @@ public class UserOrder implements Serializable {
 	@JoinColumn(name="fk_shippingid")
 	private Shipping shipping;
 
-	@JsonBackReference(value = "user_order_payment")
+	@JsonManagedReference(value = "user_order_payment")
 	@OneToOne
 	@JoinColumn(name="fk_payementid")
 	private Payment payment;

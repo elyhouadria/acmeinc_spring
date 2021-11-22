@@ -6,7 +6,6 @@ import com.elyhouadria.acmeinc.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class UserServices {
     }
 
     public AcmeUser addUser(AcmeUser acmeUser) {
-        acmeUser.setCreationDate(new Date());
+        acmeUser.setCreationDate( new Date());
         acmeUser.setRoles(UserConstant.DEFAULT_ROLE);
         String encryptPassword = passwordEncoder.encode(acmeUser.getPassword());
         acmeUser.setPassword(encryptPassword);
@@ -36,8 +35,7 @@ public class UserServices {
     }
 
     public AcmeUser updateUser(AcmeUser acmeUser) {
-/*        String encryptPassword = passwordEncoder.encode(acmeUser.getPassword());
-        acmeUser.setPassword(encryptPassword);*/
+        System.out.println("user creation date spring update: " + acmeUser.getCreationDate());
         return userRepository.save(acmeUser);
     }
 

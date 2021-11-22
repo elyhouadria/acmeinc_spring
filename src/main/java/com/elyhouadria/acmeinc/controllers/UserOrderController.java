@@ -1,11 +1,9 @@
 package com.elyhouadria.acmeinc.controllers;
-
 import com.elyhouadria.acmeinc.entities.UserOrder;
 import com.elyhouadria.acmeinc.services.UserOrderServices;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +21,12 @@ public class UserOrderController {
     @GetMapping("/all")
     public ResponseEntity<List<UserOrder>> getAllUserOrders() {
         List<UserOrder> userOrders = userOrderServices.findAllUserOrders();
+        return new ResponseEntity<>(userOrders, HttpStatus.OK);
+    }
+
+    @GetMapping("/findOrdersByUserId/{id}")
+    public ResponseEntity<UserOrder[]> getUserOrdersByUserId(@PathVariable("id") Integer id) {
+        UserOrder[] userOrders = userOrderServices.findUserOrdersByUserId(id);
         return new ResponseEntity<>(userOrders, HttpStatus.OK);
     }
 
@@ -52,5 +56,4 @@ public class UserOrderController {
         userOrderServices.deleteUserOrderById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
 }
