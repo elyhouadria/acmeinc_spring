@@ -1,6 +1,7 @@
 package com.elyhouadria.acmeinc.controllers;
 
 import com.elyhouadria.acmeinc.entities.AcmeUser;
+import com.elyhouadria.acmeinc.exceptions.UserNotFoundException;
 import com.elyhouadria.acmeinc.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -31,6 +33,15 @@ public class UserController {
         AcmeUser acmeUser = userServices.findAcmeUserById(id);
         System.out.println("creation date sent :" + acmeUser.getCreationDate());
         return new ResponseEntity<>(acmeUser, HttpStatus.OK);
+    }
+
+    @GetMapping("finduserbyemail/{email}")
+    public ResponseEntity findUserByEmail(@PathVariable("email") String email) {
+        try {
+            AcmeUser acmeUser = userServices.findAcmeUserByEmail(email);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (UserNotFoundException ex) {}
+        return null;
     }
 
     @PostMapping("/add")

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -47,6 +48,7 @@ public class ProductServices {
         return productRepository.findById(id)
                 .orElseThrow(() -> new ProductNotFoundException("Product by id: " + id + " was not found"));
     }
+    @Transactional
     public void deleteProductById(Integer id) {
         productRepository.deleteProductById(id);
     }

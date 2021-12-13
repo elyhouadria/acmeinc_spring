@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET,"/productpagination").permitAll()
                 .antMatchers(HttpMethod.GET,"/category/all").permitAll()
                 .antMatchers(HttpMethod.GET,"/category/find/**").permitAll()
+                .antMatchers(HttpMethod.GET,"/user/finduserbyemail/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/contact/**").access("hasAuthority('ROLE_USER')")
                 .antMatchers(HttpMethod.GET,"/product/all","/product/find/**", "/product/search/**", "/product/findbycategory/**").permitAll()
                 .anyRequest().authenticated().and()

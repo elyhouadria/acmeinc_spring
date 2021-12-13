@@ -14,15 +14,6 @@ import java.util.Arrays;
 @SpringBootApplication
 public class AcmeincApplication {
 
-/*	@Bean
-	public WebMvcConfigurer corsConfigurer(){
-		return new WebMvcConfigurer(){
-			public void addCorsMappings(CorsRegistry registry){
-				registry.addMapping("/**").allowedHeaders("*").allowedOrigins("http://localhost:4200/").allowedMethods("*")
-						.allowCredentials(true);
-			}
-		};
-	}*/
 
 	@Bean
 	public CorsFilter corsFilter(){

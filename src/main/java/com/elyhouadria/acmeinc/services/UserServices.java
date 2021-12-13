@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServices {
@@ -39,12 +40,17 @@ public class UserServices {
         return userRepository.save(acmeUser);
     }
 
+    public AcmeUser findAcmeUserByEmail(String email) {
+        return userRepository.findUserByEmail(email)
+                .orElseThrow(() -> new UserNotFoundException("User by id: " + email + " was not found"));
+    }
+
     public AcmeUser findAcmeUserById(Integer id) {
         return userRepository.findUserById(id)
                 .orElseThrow(() -> new UserNotFoundException("User by id: " + id + " was not found"));
     }
+
     public void deleteUserById(Integer id) {
         userRepository.deleteUserById(id);
     }
-
 }
